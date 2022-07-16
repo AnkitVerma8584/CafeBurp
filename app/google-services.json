@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "523956214910",
+    "project_id": "cafeburp-36a6a",
+    "storage_bucket": "cafeburp-36a6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523956214910:android:892a5fa4b6e3ce6c4e4c2f",
+        "android_client_info": {
+          "package_name": "ass.cafeburp.dine"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "523956214910-ee8dvq9jv637he6g73iol5q5alka66qv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWRbh-a_aS4VyY1FJi4Irxd35uOXLhkkc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "523956214910-ee8dvq9jv637he6g73iol5q5alka66qv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

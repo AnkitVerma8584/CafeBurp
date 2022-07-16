@@ -1,0 +1,20 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.CafeBurp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- Status bar,button-->
+        <item name="colorPrimary">@color/inverse_red</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Fab-->
+        <item name="colorOnPrimaryContainer">@color/white</item>
+        <item name="colorPrimaryContainer">@color/red</item>
+        <item name="android:statusBarColor">@color/red</item>
+    </style>
+
+    <style name="Theme.CafeBurp" parent="Base.Theme.CafeBurp" />
+
+    <style name="TitleTextAppearance" parent="TextAppearance.AppCompat.Title">
+        <item name="android:fontFamily">@font/montserrat_medium</item>
+    </style>
+
+</resources>
