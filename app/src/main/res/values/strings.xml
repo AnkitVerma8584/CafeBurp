@@ -1,17 +1,35 @@
 <resources>
     <string name="app_name">CafeBurp</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">Home</string>
-    <string name="second_fragment_label">Cart</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
     <!-- Content Description -->
-    <string name="cart">Cart</string>
     <string name="add">Increase quantity</string>
     <string name="minus">Decrease quantity</string>
+    <string name="delete">Delete</string>
 
+    <!-- Errors and messages-->
+    <string name="no_internet">No internet available</string>
+    <string name="offline">You are offline</string>
+    <string name="some_error">Some error occurred</string>
+    <string name="placing_order">Please wait your order is being placed!</string>
+    <string name="order_placed">Your order has been placed.</string>
+    <string name="internal_error">Oops! some error occurred.</string>
+
+    <!--Home page-->
     <string name="categories">Categories</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_cart">Cart</string>
+    <string name="menu_order">Order Status</string>
+    <string name="add_cart">Add to Cart</string>
+    <string name="in_cart">In Cart</string>
+    <string name="no_result">Oops, No items found!</string>
+
+    <!-- Place order-->
+    <string name="place_order">Place your order</string>
+    <string name="enter_mobile">Enter your phone number</string>
+    <string name="emptyPhone">Phone cannot be empty</string>
+    <string name="invalidPhone">Invalid Phone number</string>
+    <string name="enter_table">Enter your table number</string>
+    <string name="emptyField">Table number is required</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
 
 </resources>

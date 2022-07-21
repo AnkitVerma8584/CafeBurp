@@ -1,4 +1,15 @@
 package ass.cafeburp.dine.data.local
 
-class MyRoomDatabase {
+import androidx.room.Database
+import androidx.room.RoomDatabase
+import ass.cafeburp.dine.data.local.daos.CartDao
+import ass.cafeburp.dine.data.local.modals.CartItem
+
+@Database(
+    entities = [CartItem::class],
+    version = 1,
+    exportSchema = false
+)
+abstract class MyRoomDatabase : RoomDatabase() {
+    abstract fun cartDao(): CartDao
 }

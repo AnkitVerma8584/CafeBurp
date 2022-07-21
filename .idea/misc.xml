@@ -3,17 +3,36 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/drawable-night/bottom_sheet.xml" value="0.178" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/drawable-night/cart.xml" value="0.178" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/drawable/badge_drawable.xml" value="0.1965" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/drawable/bottom_sheet.xml" value="0.178" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/drawable/cart.xml" value="0.2545" />
         <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/drawable/dark_gradient.xml" value="0.1965" />
         <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/drawable/grey_border.xml" value="0.1965" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/drawable/ic_add.xml" value="0.1965" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/drawable/ic_cart.xml" value="0.1965" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/drawable/ic_delete.xml" value="0.1965" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/drawable/ic_home.xml" value="0.2555" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2555" />
         <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/drawable/ic_subtract.xml" value="0.1965" />
         <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/activity_main.xml" value="0.176" />
-        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/content_main.xml" value="0.25" />
-        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/fragment_cart.xml" value="0.264" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/add_to_cart.xml" value="0.25" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/content_main.xml" value="0.152" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/dialog_place_order.xml" value="0.264" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/dialog_product_info.xml" value="0.264" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/fragment_cart.xml" value="0.176" />
         <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/fragment_first.xml" value="0.25" />
         <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/fragment_home.xml" value="0.264" />
-        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/item_cart.xml" value="0.25" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/fragment_place_order.xml" value="0.152" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/item_cart.xml" value="0.176" />
         <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/item_category.xml" value="0.536" />
-        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/item_food.xml" value="0.2" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/item_food.xml" value="0.264" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/item_product.xml" value="0.2" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/s.xml" value="0.2484375" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/shimmer_categories.xml" value="0.24895833333333334" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/layout/shimmer_products.xml" value="0.24895833333333334" />
+        <entry key="..\:/Android/Kotlin_Projects/CafeBurp/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25" />
       </map>
     </option>
   </component>

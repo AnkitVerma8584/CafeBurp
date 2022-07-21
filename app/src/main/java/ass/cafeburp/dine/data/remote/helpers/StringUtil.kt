@@ -1,4 +1,4 @@
-package com.dtech.schoolapp.util
+package ass.cafeburp.dine.data.remote.helpers
 
 import android.content.Context
 import androidx.annotation.StringRes

@@ -9,7 +9,8 @@ import ass.cafeburp.dine.databinding.ItemCategoryBinding
 import ass.cafeburp.dine.domain.modals.Category
 import coil.load
 
-class CategoryAdapter : ListAdapter<Category, CategoryAdapter.ViewHolder>(DiffCallback()) {
+class CategoryAdapter(private inline val onCategoryClicked: (Category) -> Unit) :
+    ListAdapter<Category, CategoryAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryAdapter.ViewHolder {
         val binding: ItemCategoryBinding =
@@ -28,6 +29,9 @@ class CategoryAdapter : ListAdapter<Category, CategoryAdapter.ViewHolder>(DiffCa
             binding.apply {
                 categoryName.text = item.categoryName
                 categoryImage.load(item.image)
+                root.setOnClickListener {
+                    onCategoryClicked.invoke(getItem(adapterPosition))
+                }
             }
         }
     }

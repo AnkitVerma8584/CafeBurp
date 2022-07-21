@@ -20,15 +20,6 @@ fun ShimmerFrameLayout.start() {
     visibility = View.VISIBLE
 }
 
-inline fun <T> Spinner.getSelectedItem(crossinline item: (item: T) -> Unit) {
-    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-        override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-            item.invoke(p0!!.getItemAtPosition(p2) as T)
-        }
-
-        override fun onNothingSelected(p0: AdapterView<*>?) {}
-    }
-}
 
 fun TextInputEditText.getString(): String = this.text.toString().trim()
 

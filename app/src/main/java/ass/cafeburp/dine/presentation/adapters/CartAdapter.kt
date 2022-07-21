@@ -6,13 +6,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ass.cafeburp.dine.data.local.modals.CartItem
-import ass.cafeburp.dine.databinding.ItemCategoryBinding
+import ass.cafeburp.dine.databinding.ItemCartBinding
+import coil.load
 
-class CartAdapter : ListAdapter<CartItem, CartAdapter.ViewHolder>(DiffCallback()) {
+class CartAdapter(
+    private inline val onAdd: (CartItem) -> Unit,
+    private inline val onMinus: (CartItem) -> Unit
+) :
+    ListAdapter<CartItem, CartAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartAdapter.ViewHolder {
-        val binding: ItemCategoryBinding =
-            ItemCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: ItemCartBinding =
+            ItemCartBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -20,13 +25,23 @@ class CartAdapter : ListAdapter<CartItem, CartAdapter.ViewHolder>(DiffCallback()
         holder.bind(getItem(position))
     }
 
-
-    inner class ViewHolder(private val binding: ItemCategoryBinding) :
+    inner class ViewHolder(private val binding: ItemCartBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: CartItem) {
             binding.apply {
-
+                productName.text = item.name
+                productCategory.text = item.category
+                productImage.load(item.image)
+                quantity.text = item.quantity.toString()
+                productPrice.text = String.format("₹ %s", item.price - item.discount)
+                add.setOnClickListener {
+                    onAdd.invoke(getItem(adapterPosition))
+                }
+                minus.setOnClickListener {
+                    onMinus.invoke(getItem(adapterPosition))
+                }
             }
+
         }
     }
 

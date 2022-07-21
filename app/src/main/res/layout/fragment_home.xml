@@ -17,6 +17,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category"
+        app:shimmer_auto_start="true">
+
+        <include layout="@layout/shimmer_categories" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRV"
         android:layout_width="match_parent"
@@ -29,8 +42,15 @@
         app:layout_constraintTop_toBottomOf="@+id/category"
         tools:listitem="@layout/item_category" />
 
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/category_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="categoryRV,shimmer_category" />
+
     <TextView
-        android:id="@+id/list"
+        android:id="@+id/selected_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -38,30 +58,65 @@
         android:text="@string/categories"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoryRV" />
+        app:layout_constraintTop_toBottomOf="@+id/category_barrier" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_product"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selected_category"
+        app:shimmer_auto_start="true">
+
+        <include layout="@layout/shimmer_products" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/foodRV"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:padding="12dp"
+        android:padding="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list"
-        tools:listitem="@layout/item_food" />
+        app:layout_constraintTop_toBottomOf="@+id/selected_category"
+        tools:listitem="@layout/item_product" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_cart"
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:elevation="50dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/no_result"
+        app:layout_constraintBottom_toBottomOf="@+id/foodRV"
+        app:layout_constraintEnd_toEndOf="@+id/foodRV"
+        app:layout_constraintStart_toStartOf="@+id/foodRV"
+        app:layout_constraintTop_toTopOf="@+id/foodRV"
+        app:layout_constraintVertical_bias="0.35" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/cart"
-        android:src="@drawable/ic_cart"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:text="@string/no_result"
+        android:textColor="@color/seed"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/white" />
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/no_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="imageView2,tv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

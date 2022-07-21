@@ -1,4 +1,4 @@
-package ass.cafeburp.dine.util
+package ass.cafeburp.dine.data.remote.helpers
 
 data class RetrofitResult<T>(
     val success: Boolean,

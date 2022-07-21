@@ -3,7 +3,7 @@ package ass.cafeburp.dine.data.remote.apis
 import ass.cafeburp.dine.data.remote.Api
 import ass.cafeburp.dine.domain.modals.Category
 import ass.cafeburp.dine.domain.modals.Product
-import ass.cafeburp.dine.util.RetrofitResult
+import ass.cafeburp.dine.data.remote.helpers.RetrofitResult
 import retrofit2.http.GET
 
 interface HomeApi {

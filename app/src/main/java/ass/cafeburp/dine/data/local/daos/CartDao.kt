@@ -1,17 +1,20 @@
 package ass.cafeburp.dine.data.local.daos
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import ass.cafeburp.dine.data.local.modals.CartItem
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CartDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addToCart(cartItem: CartItem)
+
+    @Query("UPDATE cart SET quantity = quantity - 1 WHERE id=:id")
+    suspend fun decreaseItem(id: Int)
+
+    @Query("UPDATE cart SET quantity = quantity + 1 WHERE id=:id")
+    suspend fun increaseItem(id: Int)
 
     @Delete
     suspend fun removeFromCart(cartItem: CartItem)
@@ -21,5 +24,8 @@ interface CartDao {
 
     @Query("DELETE FROM cart")
     suspend fun emptyCart()
+
+    @Query("SELECT EXISTS(SELECT * FROM cart WHERE id=:id)")
+    suspend fun isItemExists(id: Int): Boolean
 
 }

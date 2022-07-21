@@ -10,25 +10,62 @@
         android:id="@+id/cartRV"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layoutAnimation="@anim/layout_animation"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/materialButton"
+        app:layout_constraintBottom_toTopOf="@+id/info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_food" />
+        tools:listitem="@layout/item_cart" />
 
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
-        style="@style/Widget.Material3.Button.OutlinedButton"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Proceed"
-        android:textSize="18sp"
+        android:background="@drawable/cart"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:padding="24dp"
+            android:text="Total amount :"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/proceed"
+            app:layout_constraintEnd_toStartOf="@+id/total_price"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:padding="24dp"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/proceed"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Rs 5000" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/proceed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="Proceed"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

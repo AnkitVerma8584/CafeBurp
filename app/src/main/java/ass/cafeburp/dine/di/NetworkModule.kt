@@ -1,6 +1,6 @@
 package ass.cafeburp.dine.di
 
-import ass.cafeburp.dine.data.remote.apis.CartApi
+import ass.cafeburp.dine.data.remote.apis.OrderApi
 import ass.cafeburp.dine.data.remote.apis.HomeApi
 import ass.cafeburp.dine.data.remote.Api
 import dagger.Module
@@ -31,8 +31,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideCartApiInterface(@CafeBurpRetrofitBuild retrofit: Retrofit): CartApi =
-        retrofit.create(CartApi::class.java)
+    fun provideCartApiInterface(@CafeBurpRetrofitBuild retrofit: Retrofit): OrderApi =
+        retrofit.create(OrderApi::class.java)
 
 }
 
