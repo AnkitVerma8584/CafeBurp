@@ -23,8 +23,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="H,1:1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/placeholder" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
@@ -33,8 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
             android:ellipsize="end"
-            android:fontFamily="@font/montserrat_bold"
-            android:maxLines="2"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:maxLines="1"
             android:paddingHorizontal="3dp"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +49,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/montserrat_medium"
             android:maxLines="1"
-            android:paddingHorizontal="3dp"
+            android:paddingHorizontal="5dp"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/product_image"
@@ -65,7 +64,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/montserrat_semi_bold"
             android:maxLines="1"
-            android:paddingHorizontal="3dp"
+            android:paddingHorizontal="5dp"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/product_image"
@@ -81,7 +80,7 @@
             android:fontFamily="@font/montserrat_medium"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="Add to Cart"
+            android:text="@string/add_cart"
             app:icon="@drawable/ic_cart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

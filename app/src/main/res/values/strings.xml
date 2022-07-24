@@ -9,21 +9,25 @@
     <string name="no_internet">No internet available</string>
     <string name="offline">You are offline</string>
     <string name="some_error">Some error occurred</string>
-    <string name="placing_order">Please wait your order is being placed!</string>
-    <string name="order_placed">Your order has been placed.</string>
+    <string name="placing_order">Please wait your order is being placed…</string>
     <string name="internal_error">Oops! some error occurred.</string>
 
     <!--Home page-->
     <string name="categories">Categories</string>
+    <string name="food">Our delicacies</string>
     <string name="menu_home">Home</string>
     <string name="menu_cart">Cart</string>
     <string name="menu_order">Order Status</string>
     <string name="add_cart">Add to Cart</string>
     <string name="in_cart">In Cart</string>
-    <string name="no_result">Oops, No items found!</string>
+    <string name="no_result">Oops, No items found !</string>
+    <string name="no_cart">Seems your cart is empty !</string>
 
     <!-- Place order-->
     <string name="place_order">Place your order</string>
+    <string name="enter_name">Enter your full name</string>
+    <string name="emptyName">Name cannot be empty</string>
+    <string name="invalidName">Invalid Name</string>
     <string name="enter_mobile">Enter your phone number</string>
     <string name="emptyPhone">Phone cannot be empty</string>
     <string name="invalidPhone">Invalid Phone number</string>
@@ -31,5 +35,9 @@
     <string name="emptyField">Table number is required</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
+
+    <!--Cart-->
+    <string name="total_amount">Total amount :</string>
+    <string name="proceed">Proceed</string>
 
 </resources>

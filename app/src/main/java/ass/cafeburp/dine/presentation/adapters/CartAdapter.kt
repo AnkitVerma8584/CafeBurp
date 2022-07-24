@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ass.cafeburp.dine.data.local.modals.CartItem
 import ass.cafeburp.dine.databinding.ItemCartBinding
+import ass.cafeburp.dine.util.inCurrency
 import coil.load
 
-class CartAdapter(
+open class CartAdapter(
     private inline val onAdd: (CartItem) -> Unit,
     private inline val onMinus: (CartItem) -> Unit
-) :
-    ListAdapter<CartItem, CartAdapter.ViewHolder>(DiffCallback()) {
+) : ListAdapter<CartItem, CartAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartAdapter.ViewHolder {
         val binding: ItemCartBinding =
@@ -33,7 +33,7 @@ class CartAdapter(
                 productCategory.text = item.category
                 productImage.load(item.image)
                 quantity.text = item.quantity.toString()
-                productPrice.text = String.format("₹ %s", item.price - item.discount)
+                productPrice.text = item.price.inCurrency()
                 add.setOnClickListener {
                     onAdd.invoke(getItem(adapterPosition))
                 }

@@ -4,15 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import ass.cafeburp.dine.R
 import ass.cafeburp.dine.databinding.FragmentCartBinding
 import ass.cafeburp.dine.presentation.MainViewModel
 import ass.cafeburp.dine.presentation.adapters.CartAdapter
 import ass.cafeburp.dine.presentation.dialogs.order.PlaceOrderDialog
 import ass.cafeburp.dine.util.collectFromFlow
+import ass.cafeburp.dine.util.inCurrency
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +26,8 @@ class CartFragment : Fragment() {
     private val binding get() = _binding!!
     private val mainViewModel: MainViewModel by activityViewModels()
     private val viewModel: CartViewModel by viewModels()
+    private lateinit var textView: TextView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,18 +45,28 @@ class CartFragment : Fragment() {
         binding.apply {
             cartRV.adapter = adapter
             mainViewModel.cartItems.observe(viewLifecycleOwner) {
+                noResult.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
                 adapter.submitList(it)
                 viewModel.setPrice(it)
                 info.visibility = if (it.isEmpty()) View.GONE else View.VISIBLE
             }
+            totalPrice.setFactory {
+                textView = TextView(requireContext())
+                textView.textSize = 18F
+                textView.typeface = ResourcesCompat.getFont(
+                    requireContext(),
+                    R.font.montserrat_bold
+                )
+                textView
+            }
             collectFromFlow(viewModel.price) {
-                totalPrice.text = String.format("₹ %s", it)
+                totalPrice.setText(it.inCurrency())
             }
 
             proceed.setOnClickListener {
-                val dialog = PlaceOrderDialog { mobile, table ->
+                val dialog = PlaceOrderDialog { name, mobile, table ->
                     findNavController().navigate(
-                        CartFragmentDirections.actionNavCartToNavPlaceOrder(mobile, table)
+                        CartFragmentDirections.actionNavCartToNavPlaceOrder(name, mobile, table)
                     )
                 }
                 dialog.show(childFragmentManager, null)

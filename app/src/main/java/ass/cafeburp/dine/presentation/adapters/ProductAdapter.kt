@@ -10,6 +10,7 @@ import ass.cafeburp.dine.databinding.ItemProductBinding
 import ass.cafeburp.dine.domain.modals.Product
 import ass.cafeburp.dine.presentation.MainViewModel
 import ass.cafeburp.dine.presentation.dialogs.product_info.interfaces.ProductInterfaces
+import ass.cafeburp.dine.util.inCurrency
 import coil.load
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
@@ -27,17 +28,17 @@ class ProductAdapter(private val viewModel: MainViewModel) :
     }
 
     override fun onBindViewHolder(holder: ProductAdapter.ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(position)
     }
 
     inner class ViewHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Product) {
-            viewModel.cartItems
+        fun bind(position: Int) {
+            val item: Product = getItem(position)
             binding.apply {
                 productCategory.text = item.category
                 productName.text = item.name
-                productPrice.text = String.format("₹ %s", item.totalPrice)
+                productPrice.text = item.price.inCurrency()
                 productImage.load(item.image)
 
                 fun change() {
@@ -46,26 +47,22 @@ class ProductAdapter(private val viewModel: MainViewModel) :
                         text = resources.getString(R.string.in_cart)
                     }
                 }
-
                 CoroutineScope(Main).launch {
-                    if (viewModel.checkInCart(getItem(adapterPosition).id)) {
+                    if (viewModel.checkInCart(item.id)) {
                         change()
                     } else {
-                        addToCart.setOnClickListener {
-                            if (adapterPosition != RecyclerView.NO_POSITION) {
-                                productInterfaces.onAddToCart(getItem(adapterPosition))
-                                change()
-                            }
+                        addToCart.apply {
+                            isEnabled = true
+                            text = resources.getString(R.string.add_cart)
                         }
                     }
                 }
+                addToCart.setOnClickListener {
+                    productInterfaces.onAddToCart(item)
+                    change()
+                }
                 root.setOnClickListener {
-                    if (adapterPosition != RecyclerView.NO_POSITION) {
-                        productInterfaces.onProductClicked(
-                            getItem(adapterPosition),
-                            adapterPosition
-                        )
-                    }
+                    productInterfaces.onProductClicked(item, position)
                 }
             }
         }

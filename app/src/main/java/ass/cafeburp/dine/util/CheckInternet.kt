@@ -10,17 +10,18 @@ import javax.inject.Singleton
 @Singleton
 class CheckInternet @Inject constructor(@ApplicationContext private val context: Context) {
 
-    fun hasNoInternetConnection(): Boolean {
+    fun hasNoInternetConnection(): Boolean = !hasInternetConnection()
+    private fun hasInternetConnection(): Boolean {
         val connectivityManager: ConnectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-        val activeNetwork = connectivityManager.activeNetwork ?: return true
-        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return true
+        val activeNetwork = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
         return when {
-            capabilities.hasTransport(TRANSPORT_WIFI) ||
-                    capabilities.hasTransport(TRANSPORT_CELLULAR) ||
-                    capabilities.hasTransport(TRANSPORT_ETHERNET) -> false
-            else -> true
+            capabilities.hasTransport(TRANSPORT_WIFI) -> true
+            capabilities.hasTransport(TRANSPORT_CELLULAR) -> true
+            capabilities.hasTransport(TRANSPORT_ETHERNET) -> true
+            else -> false
         }
     }
 }

@@ -7,7 +7,7 @@ import ass.cafeburp.dine.data.local.modals.CartItem
 
 @Database(
     entities = [CartItem::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class MyRoomDatabase : RoomDatabase() {

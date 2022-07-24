@@ -34,6 +34,7 @@ class PlaceOrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+
             fun loadAnimation(
                 @RawRes res: Int,
                 message: String? = resources.getString(R.string.internal_error)
@@ -45,6 +46,7 @@ class PlaceOrderFragment : Fragment() {
                 }
                 status.text = message
             }
+
             viewModel.orderState.observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Error -> loadAnimation(
@@ -53,7 +55,7 @@ class PlaceOrderFragment : Fragment() {
                     )
 
                     is Resource.Success -> {
-                        loadAnimation(R.raw.success, resources.getString(R.string.order_placed))
+                        loadAnimation(R.raw.success, it.data)
                         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
                             viewModel.emptyCart()
                             delay(3000)

@@ -11,8 +11,7 @@ data class CartItem(
     val category: String,
     val quantity: Int,
     val price: Double,
-    val discount: Double = 0.0,
     val image: String
 ) {
-    val totalPrice get() = quantity * (price - discount)
+    val totalPrice get() = quantity * price
 }

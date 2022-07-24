@@ -25,6 +25,9 @@
         android:label="@string/menu_order"
         tools:layout="@layout/fragment_place_order">
         <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
             android:name="mobile"
             app:argType="string" />
         <argument

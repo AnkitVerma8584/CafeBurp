@@ -30,7 +30,7 @@
         android:layout_margin="16dp"
         android:fontFamily="@font/montserrat_bold"
         android:padding="8dp"
-        android:text="Your order is being placed..."
+        android:text="@string/placing_order"
         android:textAlignment="center"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"

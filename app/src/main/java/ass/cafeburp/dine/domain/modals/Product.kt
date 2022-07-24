@@ -6,8 +6,5 @@ data class Product(
     val category: String,
     val description: String,
     val price: Double,
-    val discount: Double = 0.0,
     val image: String
-) {
-    val totalPrice get() = price - discount
-}
+)

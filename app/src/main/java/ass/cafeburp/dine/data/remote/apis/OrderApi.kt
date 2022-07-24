@@ -2,15 +2,13 @@ package ass.cafeburp.dine.data.remote.apis
 
 import ass.cafeburp.dine.data.remote.Api
 import ass.cafeburp.dine.data.remote.helpers.RetrofitResult
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
+import ass.cafeburp.dine.domain.modals.Order
+import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface OrderApi {
     @POST(Api.POST_ORDER)
-    @FormUrlEncoded
     suspend fun placeOrder(
-        @Field("mobile") mobile: String,
-        @Field("table") table: String
+        @Body order: Order
     ): RetrofitResult<String>
 }

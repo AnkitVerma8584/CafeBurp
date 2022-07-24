@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import ass.cafeburp.dine.R
 import ass.cafeburp.dine.databinding.DialogProductInfoBinding
 import ass.cafeburp.dine.domain.modals.Product
+import ass.cafeburp.dine.util.inCurrency
 import coil.load
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,7 +56,7 @@ class ProductItemInfo(
                     }
                 }
                 productName.text = it.name
-                productPrice.text = String.format("Rs %s", it.totalPrice)
+                productPrice.text = it.price.inCurrency()
                 productCategory.text = it.category
                 productDescription.text = it.description
                 productImage.load(it.image)

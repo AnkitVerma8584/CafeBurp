@@ -34,10 +34,6 @@
 
     <style name="Theme.CafeBurp" parent="Base.Theme.CafeBurp" />
 
-    <style name="TitleTextAppearance" parent="TextAppearance.AppCompat.Title">
-        <item name="android:fontFamily">@font/montserrat_medium</item>
-    </style>
-
     <style name="ImageViewCustom">
         <item name="android:background">@color/md_theme_dark_secondaryContainer</item>
         <item name="tint">@color/md_theme_dark_onSecondaryContainer</item>

@@ -22,6 +22,9 @@ interface CartDao {
     @Query("SELECT * FROM cart")
     fun getAllCartItems(): Flow<List<CartItem>>
 
+    @Query("SELECT * FROM cart")
+    suspend fun getItemsForOrder(): List<CartItem>
+
     @Query("DELETE FROM cart")
     suspend fun emptyCart()
 

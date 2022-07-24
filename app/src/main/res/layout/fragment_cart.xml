@@ -18,12 +18,13 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_cart" />
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/cart"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -33,24 +34,23 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_semi_bold"
             android:padding="24dp"
-            android:text="Total amount :"
+            android:text="@string/total_amount"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/proceed"
             app:layout_constraintEnd_toStartOf="@+id/total_price"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textview.MaterialTextView
+        <TextSwitcher
             android:id="@+id/total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
+            android:inAnimation="@anim/slide_in_top"
+            android:outAnimation="@anim/slide_out_bottom"
             android:padding="24dp"
-            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/proceed"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Rs 5000" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/proceed"
@@ -60,7 +60,7 @@
             android:fontFamily="@font/montserrat_semi_bold"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="Proceed"
+            android:text="@string/proceed"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,4 +68,35 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:elevation="50dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/empty_cart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:padding="5dp"
+        android:text="@string/no_cart"
+        android:textColor="@color/seed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/no_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="imageView2,tv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

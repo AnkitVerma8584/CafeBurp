@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import ass.cafeburp.dine.databinding.DialogPlaceOrderBinding
 import ass.cafeburp.dine.util.checkEditText
+import ass.cafeburp.dine.util.checkName
 import ass.cafeburp.dine.util.checkPhone
 import ass.cafeburp.dine.util.getString
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -13,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PlaceOrderDialog(
-    private inline val onConfirmed: ((String, String) -> Unit)?
+    private inline val onConfirmed: ((String, String, String) -> Unit)?
 ) : BottomSheetDialogFragment() {
 
     constructor() : this(null)
@@ -35,8 +36,16 @@ class PlaceOrderDialog(
                 dismiss()
             }
             confirmButton.setOnClickListener {
-                if (checkPhone(mobileIl, mobileEt) && checkEditText(tableIl, tableEt))
-                    onConfirmed?.invoke(mobileEt.getString(), tableEt.getString()) ?: dismiss()
+                if (checkName(nameIl, nameEt) && checkPhone(mobileIl, mobileEt) && checkEditText(
+                        tableIl,
+                        tableEt
+                    )
+                )
+                    onConfirmed?.invoke(
+                        nameEt.getString(),
+                        mobileEt.getString(),
+                        tableEt.getString()
+                    ) ?: dismiss()
             }
         }
     }

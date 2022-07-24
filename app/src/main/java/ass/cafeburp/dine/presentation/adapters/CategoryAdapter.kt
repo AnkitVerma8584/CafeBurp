@@ -27,7 +27,7 @@ class CategoryAdapter(private inline val onCategoryClicked: (Category) -> Unit) 
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Category) {
             binding.apply {
-                categoryName.text = item.categoryName
+                categoryName.text = item.category_name
                 categoryImage.load(item.image)
                 root.setOnClickListener {
                     onCategoryClicked.invoke(getItem(adapterPosition))
