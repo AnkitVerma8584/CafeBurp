@@ -10,25 +10,28 @@ interface CartDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addToCart(cartItem: CartItem)
 
-    @Query("UPDATE cart SET quantity = quantity - 1 WHERE id=:id")
+    @Query("UPDATE cart SET quantity = quantity - 1 WHERE id=:id;")
     suspend fun decreaseItem(id: Int)
 
-    @Query("UPDATE cart SET quantity = quantity + 1 WHERE id=:id")
+    @Query("UPDATE cart SET quantity = quantity + 1 WHERE id=:id;")
     suspend fun increaseItem(id: Int)
 
     @Delete
     suspend fun removeFromCart(cartItem: CartItem)
 
-    @Query("SELECT * FROM cart")
+    @Query("SELECT * FROM cart;")
     fun getAllCartItems(): Flow<List<CartItem>>
 
-    @Query("SELECT * FROM cart")
+    @Query("SELECT * FROM cart;")
     suspend fun getItemsForOrder(): List<CartItem>
 
-    @Query("DELETE FROM cart")
+    @Query("DELETE FROM cart;")
     suspend fun emptyCart()
 
-    @Query("SELECT EXISTS(SELECT * FROM cart WHERE id=:id)")
+    @Query("SELECT SUM(price*quantity) as total FROM cart;")
+    suspend fun getTotal(): Double
+
+    @Query("SELECT EXISTS(SELECT * FROM cart WHERE id=:id LIMIT 1);")
     suspend fun isItemExists(id: Int): Boolean
 
 }

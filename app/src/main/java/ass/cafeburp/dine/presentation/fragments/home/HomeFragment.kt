@@ -10,7 +10,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ass.cafeburp.dine.data.remote.Api
 import ass.cafeburp.dine.data.remote.helpers.Resource
 import ass.cafeburp.dine.databinding.FragmentHomeBinding
 import ass.cafeburp.dine.domain.modals.Product
@@ -42,6 +41,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
+
             selectedCategory.text = viewModel.categoryName.asString(requireContext())
 
             val adapter = CategoryAdapter {
@@ -67,6 +67,7 @@ class HomeFragment : Fragment() {
             foodRV.layoutManager = linearLayoutManager
             categoryRV.adapter = adapter
             foodRV.adapter = productAdapter
+
             foodRV.addOnScrollListener(this@HomeFragment.scrollListener)
 
             viewModel.categories.observe(viewLifecycleOwner) { res ->
@@ -113,16 +114,15 @@ class HomeFragment : Fragment() {
             val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
             val visibleItemCount = layoutManager.childCount
             val totalItemCount = layoutManager.itemCount
+
             val isNotLoadingAndNotLastPage = !viewModel.isLoading.value && !viewModel.isLastPage
-            val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
-            val isNotAtBeginning = firstVisibleItemPosition >= 0
-            val isTotalMoreThanVisible = totalItemCount >= Api.FOOD_LIMIT
-            val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
-                    isTotalMoreThanVisible && isScrolling
+            val isAtLastItem = firstVisibleItemPosition + visibleItemCount == totalItemCount
+
+            val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isScrolling
             if (shouldPaginate) {
                 viewModel.isLoading.value = true
-                viewModel.getProducts()
                 isScrolling = false
+                viewModel.getProducts()
             }
         }
 

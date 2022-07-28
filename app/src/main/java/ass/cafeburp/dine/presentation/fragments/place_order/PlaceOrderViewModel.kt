@@ -1,12 +1,11 @@
 package ass.cafeburp.dine.presentation.fragments.place_order
 
-import android.util.Log
 import androidx.lifecycle.*
 import ass.cafeburp.dine.data.local.daos.CartDao
+import ass.cafeburp.dine.data.local.mapper.mapItem
 import ass.cafeburp.dine.data.remote.helpers.Resource
 import ass.cafeburp.dine.domain.implementations.OrderRepositoryImpl
 import ass.cafeburp.dine.domain.modals.Order
-import ass.cafeburp.dine.util.printLog
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.launch
@@ -29,26 +28,15 @@ class PlaceOrderViewModel @Inject constructor(
                 savedStateHandle.get<String>("name") ?: "",
                 savedStateHandle.get<String>("mobile") ?: "",
                 savedStateHandle.get<String>("table") ?: "",
-                getOrder()
+                cartDao.getTotal(),
+                cartDao.getItemsForOrder().map { it.mapItem() }
             )
-            Log.e("MY_ORDER", order.toString())
             val result = orderRepositoryImpl.placeOrder(order)
-            result.printLog("RESPONSE")
             _orderState.postValue(result)
         }
     }
 
-    private suspend fun getOrder(): HashMap<Int, Int> {
-        val map = HashMap<Int, Int>()
-        cartDao.getItemsForOrder().forEach { item ->
-            map[item.id] = item.quantity
-        }
-        map.printLog()
-        return map
+    suspend fun emptyCart() = withContext(Default) {
+        cartDao.emptyCart()
     }
-
-    suspend fun emptyCart() =
-        withContext(Default) {
-            cartDao.emptyCart()
-        }
 }

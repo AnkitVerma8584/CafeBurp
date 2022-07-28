@@ -30,11 +30,13 @@
         <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
         <item name="elevationOverlayColor">@color/md_theme_light_surfaceTint</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
-
     </style>
 
     <style name="Theme.CafeBurp" parent="Base.Theme.CafeBurp" />
 
+    <style name="Theme.Splash" parent="Base.Theme.CafeBurp">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
 
     <style name="TitleTextAppearance" parent="TextAppearance.AppCompat.Title">
         <item name="android:fontFamily">@font/montserrat_medium</item>

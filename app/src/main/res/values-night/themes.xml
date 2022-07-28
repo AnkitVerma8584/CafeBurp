@@ -38,4 +38,5 @@
         <item name="android:background">@color/md_theme_dark_secondaryContainer</item>
         <item name="tint">@color/md_theme_dark_onSecondaryContainer</item>
     </style>
+
 </resources>

@@ -1,8 +1,8 @@
 package ass.cafeburp.dine.di
 
-import ass.cafeburp.dine.data.remote.apis.OrderApi
-import ass.cafeburp.dine.data.remote.apis.HomeApi
 import ass.cafeburp.dine.data.remote.Api
+import ass.cafeburp.dine.data.remote.apis.HomeApi
+import ass.cafeburp.dine.data.remote.apis.OrderApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

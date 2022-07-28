@@ -40,6 +40,7 @@ class HomeViewModel @Inject constructor(
         categoryName = StringUtil.DynamicText(category.category_name)
         categoryId = category.id
         page = 1
+        isLastPage = false
         foodResponse = null
         getProducts()
     }
@@ -73,22 +74,21 @@ class HomeViewModel @Inject constructor(
                     page++
                     if (foodResponse == null) {
                         foodResponse = result
-                    } else {
-                        val oldProducts = foodResponse?.data
-                        oldProducts?.addAll(newProducts)
-                    }
+                    } else
+                        foodResponse?.data?.addAll(newProducts)
+
                     _products.postValue(foodResponse?.data?.toList())
                 }
                 is Resource.Error -> {
+                    if (foodResponse == null) {
+                        _products.postValue(emptyList())
+                    }
                     withContext(Main.immediate) {
                         _productsError.send(result.message!!)
                     }
-                    if (foodResponse == null)
-                        _products.postValue(emptyList())
                 }
             }
             isLoading.value = false
         }
     }
-
 }
