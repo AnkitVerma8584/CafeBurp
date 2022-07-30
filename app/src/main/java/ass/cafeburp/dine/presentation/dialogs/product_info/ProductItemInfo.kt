@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ProductItemInfo(
     private val product: Product? = null,
-    private inline val onCancel: ((Unit) -> Unit)?
+    private inline val onDialogClosed: ((Unit) -> Unit)?
 ) : BottomSheetDialogFragment() {
 
     constructor() : this(null, null)
@@ -60,13 +60,19 @@ class ProductItemInfo(
                 productCategory.text = it.category
                 productDescription.text = it.description
                 productImage.load(it.image)
+                close.setOnClickListener { dismiss() }
             }
         } ?: dismiss()
     }
 
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDialogClosed?.invoke(Unit)
+    }
+
     override fun onCancel(dialog: DialogInterface) {
         super.onCancel(dialog)
-        onCancel?.invoke(Unit)
+        onDialogClosed?.invoke(Unit)
     }
 
     override fun onDestroyView() {

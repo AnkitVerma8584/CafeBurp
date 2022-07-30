@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet"
     android:theme="@style/Base.Theme.CafeBurp"
     tools:context=".presentation.dialogs.order.PlaceOrderDialog">
 
@@ -11,7 +12,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="120dp"
-        android:layout_margin="16dp"
+        android:layout_margin="60dp"
         android:importantForAccessibility="no"
         android:src="@drawable/waiter"
         app:layout_constraintEnd_toEndOf="parent"
