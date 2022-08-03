@@ -7,3 +7,4 @@ import ass.cafeburp.dine.domain.modals.Product
 fun Product.productToCartItem(): CartItem = CartItem(id, name, category, 1, price, image)
 
 fun CartItem.mapItem(): OrderItem = OrderItem(id, quantity, price)
+

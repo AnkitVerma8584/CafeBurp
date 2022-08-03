@@ -26,12 +26,13 @@
         android:layout_height="0dp"
         android:layout_marginTop="2dp"
         android:importantForAccessibility="no"
-        android:scaleType="centerCrop"
-        app:layout_constraintDimensionRatio="H,3:2"
+        android:scaleType="fitXY"
+        app:layout_constraintDimensionRatio="H,5:4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/close"
-        app:shapeAppearanceOverlay="@style/ImageView.Corner" />
+        app:shapeAppearanceOverlay="@style/ImageView.Corner"
+        tools:src="@drawable/placeholder" />
 
 
     <TextView
