@@ -11,7 +11,7 @@ import ass.cafeburp.dine.domain.modals.Product
 import ass.cafeburp.dine.presentation.MainViewModel
 import ass.cafeburp.dine.presentation.dialogs.product_info.interfaces.ProductInterfaces
 import ass.cafeburp.dine.util.inCurrency
-import coil.load
+import ass.cafeburp.dine.util.load
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
@@ -40,7 +40,6 @@ class ProductAdapter(private val viewModel: MainViewModel) :
                 productName.text = item.name
                 productPrice.text = item.price.inCurrency()
                 productImage.load(item.image)
-
                 fun change() {
                     addToCart.apply {
                         isEnabled = false

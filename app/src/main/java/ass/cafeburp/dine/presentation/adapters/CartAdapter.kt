@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ass.cafeburp.dine.data.local.modals.CartItem
 import ass.cafeburp.dine.databinding.ItemCartBinding
 import ass.cafeburp.dine.util.inCurrency
-import coil.load
+import ass.cafeburp.dine.util.load
 
 open class CartAdapter(
     private inline val onAdd: (CartItem) -> Unit,

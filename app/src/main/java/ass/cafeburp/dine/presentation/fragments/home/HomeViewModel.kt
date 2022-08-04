@@ -49,8 +49,7 @@ class HomeViewModel @Inject constructor(
         MutableLiveData<Resource<List<Category>>>()
     val categories: LiveData<Resource<List<Category>>> = _categories
 
-    private val _products: MutableLiveData<List<Product>> =
-        MutableLiveData<List<Product>>()
+    private val _products: MutableLiveData<List<Product>> = MutableLiveData<List<Product>>()
     val products: LiveData<List<Product>> = _products
 
     private val _productsError: Channel<StringUtil> = Channel()
@@ -76,7 +75,6 @@ class HomeViewModel @Inject constructor(
                         foodResponse = result
                     } else
                         foodResponse?.data?.addAll(newProducts)
-
                     _products.postValue(foodResponse?.data?.toList())
                 }
                 is Resource.Error -> {

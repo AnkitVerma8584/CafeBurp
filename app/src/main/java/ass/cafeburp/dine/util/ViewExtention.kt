@@ -1,11 +1,13 @@
 package ass.cafeburp.dine.util
 
 import android.view.View
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import ass.cafeburp.dine.R
+import coil.load
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -71,5 +73,12 @@ fun Fragment.checkName(textInputLayout: TextInputLayout, editText: TextInputEdit
     }
     textInputLayout.error = null
     return true
+}
+
+fun ImageView.load(url: String) {
+    this.load(url) {
+        placeholder(R.drawable.placeholder)
+        crossfade(600)
+    }
 }
 

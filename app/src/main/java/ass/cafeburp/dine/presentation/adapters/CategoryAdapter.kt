@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ass.cafeburp.dine.databinding.ItemCategoryBinding
 import ass.cafeburp.dine.domain.modals.Category
-import coil.load
+import ass.cafeburp.dine.util.load
 
 class CategoryAdapter(private inline val onCategoryClicked: (Category) -> Unit) :
     ListAdapter<Category, CategoryAdapter.ViewHolder>(DiffCallback()) {

@@ -11,7 +11,7 @@ import ass.cafeburp.dine.R
 import ass.cafeburp.dine.databinding.DialogProductInfoBinding
 import ass.cafeburp.dine.domain.modals.Product
 import ass.cafeburp.dine.util.inCurrency
-import coil.load
+import ass.cafeburp.dine.util.load
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
