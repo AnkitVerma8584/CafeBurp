@@ -8,15 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import ass.cafeburp.dine.R
 import ass.cafeburp.dine.databinding.ItemProductBinding
 import ass.cafeburp.dine.domain.modals.Product
-import ass.cafeburp.dine.presentation.MainViewModel
 import ass.cafeburp.dine.presentation.dialogs.product_info.interfaces.ProductInterfaces
+import ass.cafeburp.dine.presentation.fragments.home.HomeViewModel
 import ass.cafeburp.dine.util.inCurrency
 import ass.cafeburp.dine.util.load
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 
-class ProductAdapter(private val viewModel: MainViewModel) :
+class ProductAdapter(private val viewModel: HomeViewModel) :
     ListAdapter<Product, ProductAdapter.ViewHolder>(DiffCallback()) {
 
     lateinit var productInterfaces: ProductInterfaces

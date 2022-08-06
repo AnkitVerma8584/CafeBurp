@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ass.cafeburp.dine.R
+import ass.cafeburp.dine.data.local.daos.CartDao
+import ass.cafeburp.dine.data.local.mapper.productToCartItem
 import ass.cafeburp.dine.data.remote.Api
 import ass.cafeburp.dine.data.remote.helpers.Resource
 import ass.cafeburp.dine.data.remote.helpers.StringUtil
@@ -24,13 +26,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val homeRepositoryImpl: HomeRepositoryImpl
+    private val homeRepositoryImpl: HomeRepositoryImpl,
+    private val cartDao: CartDao
 ) : ViewModel() {
 
     var categoryName: StringUtil = StringUtil.StringResource(R.string.food)
     private var categoryId: Int = 0
     private var page: Int = 1
-    var isLastPage = false
+    val isLastPage = MutableStateFlow(false)
 
     val isLoading = MutableStateFlow(false)
 
@@ -40,7 +43,7 @@ class HomeViewModel @Inject constructor(
         categoryName = StringUtil.DynamicText(category.category_name)
         categoryId = category.id
         page = 1
-        isLastPage = false
+        isLastPage.value = false
         foodResponse = null
         getProducts()
     }
@@ -69,7 +72,7 @@ class HomeViewModel @Inject constructor(
             when (val result = homeRepositoryImpl.getProducts(categoryId, page)) {
                 is Resource.Success -> {
                     val newProducts: MutableList<Product> = result.data!!
-                    isLastPage = newProducts.size < Api.FOOD_LIMIT
+                    isLastPage.value = newProducts.size < Api.FOOD_LIMIT
                     page++
                     if (foodResponse == null) {
                         foodResponse = result
@@ -89,4 +92,12 @@ class HomeViewModel @Inject constructor(
             isLoading.value = false
         }
     }
+
+    fun addItem(product: Product) {
+        viewModelScope.launch(Default) {
+            cartDao.addToCart(product.productToCartItem())
+        }
+    }
+
+    suspend fun checkInCart(id: Int): Boolean = cartDao.isItemExists(id)
 }

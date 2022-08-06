@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import ass.cafeburp.dine.R
 import ass.cafeburp.dine.databinding.FragmentCartBinding
-import ass.cafeburp.dine.presentation.MainViewModel
 import ass.cafeburp.dine.presentation.adapters.CartAdapter
 import ass.cafeburp.dine.presentation.dialogs.order.PlaceOrderDialog
 import ass.cafeburp.dine.util.collectFromFlow
@@ -24,10 +22,8 @@ class CartFragment : Fragment() {
 
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
-    private val mainViewModel: MainViewModel by activityViewModels()
     private val viewModel: CartViewModel by viewModels()
     private lateinit var textView: TextView
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,12 +40,14 @@ class CartFragment : Fragment() {
 
         binding.apply {
             cartRV.adapter = adapter
-            mainViewModel.cartItems.observe(viewLifecycleOwner) {
+
+            viewModel.cartItems.observe(viewLifecycleOwner) {
                 noResult.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
                 adapter.submitList(it)
                 viewModel.setPrice(it)
                 info.visibility = if (it.isEmpty()) View.GONE else View.VISIBLE
             }
+
             totalPrice.setFactory {
                 textView = TextView(requireContext())
                 textView.textSize = 18F

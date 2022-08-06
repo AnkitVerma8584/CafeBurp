@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ass.cafeburp.dine.data.remote.helpers.Resource
 import ass.cafeburp.dine.databinding.FragmentHomeBinding
 import ass.cafeburp.dine.domain.modals.Product
-import ass.cafeburp.dine.presentation.MainViewModel
 import ass.cafeburp.dine.presentation.adapters.CategoryAdapter
 import ass.cafeburp.dine.presentation.adapters.ProductAdapter
 import ass.cafeburp.dine.presentation.dialogs.product_info.ProductItemInfo
@@ -27,7 +25,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val viewModel: HomeViewModel by viewModels()
-    private val mainViewModel: MainViewModel by activityViewModels()
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -41,15 +38,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-
             selectedCategory.text = viewModel.categoryName.asString(requireContext())
-
             val adapter = CategoryAdapter {
                 viewModel.setCategory(it)
                 selectedCategory.text = it.category_name
             }
 
-            val productAdapter = ProductAdapter(mainViewModel)
+            val productAdapter = ProductAdapter(viewModel)
 
             productAdapter.productInterfaces = object : ProductInterfaces {
                 override fun onProductClicked(product: Product, position: Int) {
@@ -60,11 +55,9 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun onAddToCart(product: Product) {
-                    mainViewModel.addItem(product)
+                    viewModel.addItem(product)
                 }
             }
-            val linearLayoutManager = LinearLayoutManager(context)
-            foodRV.layoutManager = linearLayoutManager
             categoryRV.adapter = adapter
             foodRV.adapter = productAdapter
 
@@ -100,7 +93,11 @@ class HomeFragment : Fragment() {
             }
 
             collectFromFlow(viewModel.isLoading) {
-                progress.visibility = if (it) View.VISIBLE else View.GONE
+                progress.visibility = if (it) View.VISIBLE else View.INVISIBLE
+            }
+
+            collectFromFlow(viewModel.isLastPage) {
+                foodRV.setPadding(0, 0, 0, if (it) 0 else 100)
             }
         }
     }
@@ -115,7 +112,9 @@ class HomeFragment : Fragment() {
             val visibleItemCount = layoutManager.childCount
             val totalItemCount = layoutManager.itemCount
 
-            val isNotLoadingAndNotLastPage = !viewModel.isLoading.value && !viewModel.isLastPage
+            val isNotLoadingAndNotLastPage =
+                !viewModel.isLoading.value && !viewModel.isLastPage.value
+
             val isAtLastItem = firstVisibleItemPosition + visibleItemCount == totalItemCount
 
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isScrolling

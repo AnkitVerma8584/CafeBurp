@@ -41,11 +41,9 @@ class MainActivity : AppCompatActivity() {
             binding.contentMain.bottomNavigation.getOrCreateBadge(R.id.nav_cart)
         badgeDrawable.maxCharacterCount = 2
 
-        viewModel.cartItems.observe(this) {
-            if (it.isNotEmpty()) {
-                badgeDrawable.number = it.size
-                badgeDrawable.isVisible = true
-            } else badgeDrawable.isVisible = false
+        viewModel.cartCount.observe(this) {
+            badgeDrawable.number = it
+            badgeDrawable.isVisible = it > 0
         }
 
         navController.addOnDestinationChangedListener { _: NavController?, destination: NavDestination, _: Bundle? ->
