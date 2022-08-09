@@ -1,4 +1,4 @@
-package ass.cafeburp.dine.data.remote.helpers
+package ass.cafeburp.dine.domain.util
 
 sealed class Resource<T>(
     val data: T? = null,

@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import ass.cafeburp.dine.R
-import ass.cafeburp.dine.data.remote.helpers.Resource
+import ass.cafeburp.dine.domain.util.Resource
 import ass.cafeburp.dine.databinding.FragmentPlaceOrderBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay

@@ -3,9 +3,9 @@ package ass.cafeburp.dine.presentation.fragments.place_order
 import androidx.lifecycle.*
 import ass.cafeburp.dine.data.local.daos.CartDao
 import ass.cafeburp.dine.data.local.mapper.mapItem
-import ass.cafeburp.dine.data.remote.helpers.Resource
-import ass.cafeburp.dine.domain.implementations.OrderRepositoryImpl
-import ass.cafeburp.dine.domain.modals.Order
+import ass.cafeburp.dine.domain.util.Resource
+import ass.cafeburp.dine.domain.modals.order.Order
+import ass.cafeburp.dine.domain.repositories.OrderRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.launch
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PlaceOrderViewModel @Inject constructor(
-    private val orderRepositoryImpl: OrderRepositoryImpl,
+    private val orderRepository: OrderRepository,
     private val savedStateHandle: SavedStateHandle,
     private val cartDao: CartDao
 ) : ViewModel() {
@@ -31,7 +31,7 @@ class PlaceOrderViewModel @Inject constructor(
                 cartDao.getTotal(),
                 cartDao.getItemsForOrder().map { it.mapItem() }
             )
-            val result = orderRepositoryImpl.placeOrder(order)
+            val result = orderRepository.placeOrder(order)
             _orderState.postValue(result)
         }
     }

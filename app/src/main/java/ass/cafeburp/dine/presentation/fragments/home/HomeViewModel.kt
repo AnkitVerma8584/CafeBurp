@@ -8,11 +8,11 @@ import ass.cafeburp.dine.R
 import ass.cafeburp.dine.data.local.daos.CartDao
 import ass.cafeburp.dine.data.local.mapper.productToCartItem
 import ass.cafeburp.dine.data.remote.Api
-import ass.cafeburp.dine.data.remote.helpers.Resource
-import ass.cafeburp.dine.data.remote.helpers.StringUtil
-import ass.cafeburp.dine.domain.implementations.HomeRepositoryImpl
-import ass.cafeburp.dine.domain.modals.Category
-import ass.cafeburp.dine.domain.modals.Product
+import ass.cafeburp.dine.domain.util.Resource
+import ass.cafeburp.dine.domain.util.StringUtil
+import ass.cafeburp.dine.domain.modals.category.Category
+import ass.cafeburp.dine.domain.modals.product.Product
+import ass.cafeburp.dine.domain.repositories.HomeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.Dispatchers.Main
@@ -26,7 +26,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val homeRepositoryImpl: HomeRepositoryImpl,
+    private val homeRepository: HomeRepository,
     private val cartDao: CartDao
 ) : ViewModel() {
 
@@ -60,7 +60,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch(Default) {
-            _categories.postValue(homeRepositoryImpl.getCategories())
+            _categories.postValue(homeRepository.getCategories())
         }
         getProducts()
     }
@@ -69,7 +69,7 @@ class HomeViewModel @Inject constructor(
 
     fun getProducts() {
         viewModelScope.launch(Default) {
-            when (val result = homeRepositoryImpl.getProducts(categoryId, page)) {
+            when (val result = homeRepository.getProducts(categoryId, page)) {
                 is Resource.Success -> {
                     val newProducts: MutableList<Product> = result.data!!
                     isLastPage.value = newProducts.size < Api.FOOD_LIMIT

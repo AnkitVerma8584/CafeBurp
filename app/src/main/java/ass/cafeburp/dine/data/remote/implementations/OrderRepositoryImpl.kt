@@ -1,11 +1,11 @@
-package ass.cafeburp.dine.domain.implementations
+package ass.cafeburp.dine.data.remote.implementations
 
 import ass.cafeburp.dine.R
 import ass.cafeburp.dine.data.remote.apis.OrderApi
-import ass.cafeburp.dine.data.remote.helpers.Resource
-import ass.cafeburp.dine.data.remote.helpers.StringUtil
-import ass.cafeburp.dine.data.remote.repositories.OrderRepository
-import ass.cafeburp.dine.domain.modals.Order
+import ass.cafeburp.dine.domain.modals.order.Order
+import ass.cafeburp.dine.domain.repositories.OrderRepository
+import ass.cafeburp.dine.domain.util.Resource
+import ass.cafeburp.dine.domain.util.StringUtil
 import ass.cafeburp.dine.util.CheckInternet
 import javax.inject.Inject
 

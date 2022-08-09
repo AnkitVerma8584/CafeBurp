@@ -39,6 +39,7 @@ class CartFragment : Fragment() {
             onMinus = { viewModel.decreaseItem(it) })
 
         binding.apply {
+            cartRV.setHasFixedSize(true)
             cartRV.adapter = adapter
 
             viewModel.cartItems.observe(viewLifecycleOwner) {

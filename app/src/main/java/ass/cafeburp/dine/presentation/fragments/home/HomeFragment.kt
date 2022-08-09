@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ass.cafeburp.dine.data.remote.helpers.Resource
 import ass.cafeburp.dine.databinding.FragmentHomeBinding
-import ass.cafeburp.dine.domain.modals.Product
+import ass.cafeburp.dine.domain.modals.product.Product
+import ass.cafeburp.dine.domain.util.Resource
 import ass.cafeburp.dine.presentation.adapters.CategoryAdapter
 import ass.cafeburp.dine.presentation.adapters.ProductAdapter
 import ass.cafeburp.dine.presentation.dialogs.product_info.ProductItemInfo
@@ -39,13 +39,14 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             selectedCategory.text = viewModel.categoryName.asString(requireContext())
+
             val adapter = CategoryAdapter {
                 viewModel.setCategory(it)
                 selectedCategory.text = it.category_name
             }
+            categoryRV.adapter = adapter
 
             val productAdapter = ProductAdapter(viewModel)
-
             productAdapter.productInterfaces = object : ProductInterfaces {
                 override fun onProductClicked(product: Product, position: Int) {
                     val dialogProductInfoBinding = ProductItemInfo(product) {
@@ -58,7 +59,7 @@ class HomeFragment : Fragment() {
                     viewModel.addItem(product)
                 }
             }
-            categoryRV.adapter = adapter
+
             foodRV.adapter = productAdapter
 
             foodRV.addOnScrollListener(this@HomeFragment.scrollListener)

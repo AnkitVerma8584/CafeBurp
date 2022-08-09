@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import ass.cafeburp.dine.R
 import ass.cafeburp.dine.databinding.DialogProductInfoBinding
-import ass.cafeburp.dine.domain.modals.Product
+import ass.cafeburp.dine.domain.modals.product.Product
 import ass.cafeburp.dine.util.inCurrency
 import ass.cafeburp.dine.util.load
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment

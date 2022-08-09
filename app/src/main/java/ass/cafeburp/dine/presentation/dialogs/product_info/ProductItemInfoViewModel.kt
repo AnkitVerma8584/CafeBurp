@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ass.cafeburp.dine.data.local.daos.CartDao
 import ass.cafeburp.dine.data.local.mapper.productToCartItem
-import ass.cafeburp.dine.domain.modals.Product
+import ass.cafeburp.dine.domain.modals.product.Product
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

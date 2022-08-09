@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ass.cafeburp.dine.R
 import ass.cafeburp.dine.databinding.ItemProductBinding
-import ass.cafeburp.dine.domain.modals.Product
+import ass.cafeburp.dine.domain.modals.product.Product
 import ass.cafeburp.dine.presentation.dialogs.product_info.interfaces.ProductInterfaces
 import ass.cafeburp.dine.presentation.fragments.home.HomeViewModel
 import ass.cafeburp.dine.util.inCurrency

@@ -1,4 +1,4 @@
-package ass.cafeburp.dine.domain.modals
+package ass.cafeburp.dine.domain.modals.order
 
 data class Order(
     private val name: String,
@@ -8,4 +8,3 @@ data class Order(
     private val order: List<OrderItem>
 )
 
-data class OrderItem(private val id: Int, private val quantity: Int, private val price: Double)

@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.regex.Pattern
 
-fun <T> Fragment.collectFromFlow(flow: Flow<T>, collect: suspend (T) -> Unit) {
+internal fun <T> Fragment.collectFromFlow(flow: Flow<T>, collect: suspend (T) -> Unit) {
     viewLifecycleOwner.lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
             flow.collectLatest(collect)
@@ -24,24 +24,20 @@ fun <T> Fragment.collectFromFlow(flow: Flow<T>, collect: suspend (T) -> Unit) {
     }
 }
 
-fun ShimmerFrameLayout.stop() {
+internal fun ShimmerFrameLayout.stop() {
     stopShimmer()
     visibility = View.GONE
 }
 
-fun TextInputEditText.getString(): String = this.text.toString().trim()
+internal fun TextInputEditText.getString(): String = this.text.toString().trim()
 
-
-fun Fragment.checkPhone(textInputLayout: TextInputLayout, editText: TextInputEditText): Boolean {
+internal fun Fragment.checkPhone(textInputLayout: TextInputLayout, editText: TextInputEditText): Boolean {
     val pattern = Pattern.compile("[0-9]+")
-    val matcher = pattern.matcher(editText.text.toString())
-    if (editText.text.toString().trim().isEmpty()) {
+    val matcher = pattern.matcher(editText.getString())
+    if (editText.getString().isEmpty()) {
         textInputLayout.error = resources.getString(R.string.emptyPhone)
         return false
-    } else if (editText.text.toString()
-            .trim().length != 10 || !matcher.matches() || editText.text.toString()[0] == '0' || editText.text.toString()
-            .trim().contains("*")
-    ) {
+    } else if (editText.getString().length != 10 || !matcher.matches() || editText.text.toString()[0] == '0') {
         textInputLayout.error = resources.getString(R.string.invalidPhone)
         return false
     }
@@ -49,9 +45,8 @@ fun Fragment.checkPhone(textInputLayout: TextInputLayout, editText: TextInputEdi
     return true
 }
 
-fun Fragment.checkEditText(inputLayout: TextInputLayout, editText: TextInputEditText): Boolean {
+internal fun Fragment.checkEditText(inputLayout: TextInputLayout, editText: TextInputEditText): Boolean {
     if (editText.text.toString().trim().isEmpty()) {
-        inputLayout.parent.requestChildFocus(inputLayout, inputLayout)
         inputLayout.error = resources.getString(R.string.emptyField)
         return false
     }
@@ -59,9 +54,8 @@ fun Fragment.checkEditText(inputLayout: TextInputLayout, editText: TextInputEdit
     return true
 }
 
-fun Fragment.checkName(textInputLayout: TextInputLayout, editText: TextInputEditText): Boolean {
-    if (editText.text.toString().trim().isEmpty()) {
-        textInputLayout.parent.requestChildFocus(textInputLayout, textInputLayout)
+internal fun Fragment.checkName(textInputLayout: TextInputLayout, editText: TextInputEditText): Boolean {
+    if (editText.getString().isEmpty()) {
         textInputLayout.error = resources.getString(R.string.emptyName)
         return false
     }
@@ -75,7 +69,7 @@ fun Fragment.checkName(textInputLayout: TextInputLayout, editText: TextInputEdit
     return true
 }
 
-fun ImageView.load(url: String) {
+internal fun ImageView.load(url: String) {
     this.load(url) {
         placeholder(R.drawable.placeholder)
         crossfade(600)

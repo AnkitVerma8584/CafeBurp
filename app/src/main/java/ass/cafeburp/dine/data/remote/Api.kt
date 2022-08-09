@@ -10,5 +10,5 @@ object Api {
 
     const val POST_ORDER: String = "order.php"
 
-    const val FOOD_LIMIT: Int = 10
+    const val FOOD_LIMIT: Int = 15
 }

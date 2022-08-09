@@ -1,6 +1,6 @@
 package ass.cafeburp.dine.presentation.dialogs.product_info.interfaces
 
-import ass.cafeburp.dine.domain.modals.Product
+import ass.cafeburp.dine.domain.modals.product.Product
 
 interface ProductInterfaces {
 

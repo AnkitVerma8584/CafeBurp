@@ -1,4 +1,4 @@
-package ass.cafeburp.dine.data.remote.helpers
+package ass.cafeburp.dine.domain.util
 
 import android.content.Context
 import androidx.annotation.StringRes

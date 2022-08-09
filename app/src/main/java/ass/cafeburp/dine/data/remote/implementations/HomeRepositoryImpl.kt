@@ -1,13 +1,14 @@
-package ass.cafeburp.dine.domain.implementations
+package ass.cafeburp.dine.data.remote.implementations
 
 import ass.cafeburp.dine.R
 import ass.cafeburp.dine.data.remote.apis.HomeApi
-import ass.cafeburp.dine.data.remote.helpers.Resource
-import ass.cafeburp.dine.data.remote.helpers.StringUtil
-import ass.cafeburp.dine.data.remote.repositories.HomeRepository
-import ass.cafeburp.dine.domain.modals.Category
-import ass.cafeburp.dine.domain.modals.Product
+import ass.cafeburp.dine.domain.modals.category.Category
+import ass.cafeburp.dine.domain.modals.product.Product
+import ass.cafeburp.dine.domain.repositories.HomeRepository
+import ass.cafeburp.dine.domain.util.Resource
+import ass.cafeburp.dine.domain.util.StringUtil
 import ass.cafeburp.dine.util.CheckInternet
+import ass.cafeburp.dine.util.printLog
 import javax.inject.Inject
 
 class HomeRepositoryImpl @Inject constructor(
@@ -20,6 +21,7 @@ class HomeRepositoryImpl @Inject constructor(
             Resource.Error(message = StringUtil.StringResource(R.string.no_internet))
         else try {
             val data = homeApi.getCategories()
+            data.printLog("HOME_CATEGORY")
             if (data.success)
                 Resource.Success(data = data.data)
             else Resource.Error(message = StringUtil.DynamicText(data.message))
@@ -38,6 +40,7 @@ class HomeRepositoryImpl @Inject constructor(
         else
             try {
                 val data = homeApi.getProducts(categoryId, page)
+                data.printLog("HOME_PRODUCT")
                 if (data.success)
                     Resource.Success(data = data.data)
                 else Resource.Error(message = StringUtil.DynamicText(data.message))

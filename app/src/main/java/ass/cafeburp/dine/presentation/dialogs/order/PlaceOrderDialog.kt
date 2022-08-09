@@ -36,10 +36,9 @@ class PlaceOrderDialog(
                 dismiss()
             }
             confirmButton.setOnClickListener {
-                if (checkName(nameIl, nameEt) && checkPhone(mobileIl, mobileEt) && checkEditText(
-                        tableIl,
-                        tableEt
-                    )
+                if (checkName(nameIl, nameEt) &&
+                    checkPhone(mobileIl, mobileEt) &&
+                    checkEditText(tableIl, tableEt)
                 )
                     onConfirmed?.invoke(
                         nameEt.getString(),

@@ -1,4 +1,4 @@
-package ass.cafeburp.dine.domain.modals
+package ass.cafeburp.dine.domain.modals.product
 
 data class Product(
     val id: Int,

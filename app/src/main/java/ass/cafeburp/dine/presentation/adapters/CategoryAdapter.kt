@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ass.cafeburp.dine.databinding.ItemCategoryBinding
-import ass.cafeburp.dine.domain.modals.Category
+import ass.cafeburp.dine.domain.modals.category.Category
 import ass.cafeburp.dine.util.load
 
 class CategoryAdapter(private inline val onCategoryClicked: (Category) -> Unit) :
@@ -22,7 +22,6 @@ class CategoryAdapter(private inline val onCategoryClicked: (Category) -> Unit) 
         holder.bind(getItem(position))
     }
 
-
     inner class ViewHolder(private val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Category) {
@@ -30,7 +29,8 @@ class CategoryAdapter(private inline val onCategoryClicked: (Category) -> Unit) 
                 categoryName.text = item.category_name
                 categoryImage.load(item.image)
                 root.setOnClickListener {
-                    onCategoryClicked.invoke(getItem(adapterPosition))
+                    if (adapterPosition != RecyclerView.NO_POSITION)
+                        onCategoryClicked.invoke(getItem(adapterPosition))
                 }
             }
         }
